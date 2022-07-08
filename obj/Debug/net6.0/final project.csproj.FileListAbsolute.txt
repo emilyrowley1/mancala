@@ -1,0 +1,15 @@
+C:\Users\erowl\BYU-Idaho\Spring 2022\CSE 210\final project\bin\Debug\net6.0\final project.exe
+C:\Users\erowl\BYU-Idaho\Spring 2022\CSE 210\final project\bin\Debug\net6.0\final project.deps.json
+C:\Users\erowl\BYU-Idaho\Spring 2022\CSE 210\final project\bin\Debug\net6.0\final project.runtimeconfig.json
+C:\Users\erowl\BYU-Idaho\Spring 2022\CSE 210\final project\bin\Debug\net6.0\final project.dll
+C:\Users\erowl\BYU-Idaho\Spring 2022\CSE 210\final project\bin\Debug\net6.0\final project.pdb
+C:\Users\erowl\BYU-Idaho\Spring 2022\CSE 210\final project\obj\Debug\net6.0\final project.csproj.AssemblyReference.cache
+C:\Users\erowl\BYU-Idaho\Spring 2022\CSE 210\final project\obj\Debug\net6.0\final project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\erowl\BYU-Idaho\Spring 2022\CSE 210\final project\obj\Debug\net6.0\final project.AssemblyInfoInputs.cache
+C:\Users\erowl\BYU-Idaho\Spring 2022\CSE 210\final project\obj\Debug\net6.0\final project.AssemblyInfo.cs
+C:\Users\erowl\BYU-Idaho\Spring 2022\CSE 210\final project\obj\Debug\net6.0\final project.csproj.CoreCompileInputs.cache
+C:\Users\erowl\BYU-Idaho\Spring 2022\CSE 210\final project\obj\Debug\net6.0\final project.dll
+C:\Users\erowl\BYU-Idaho\Spring 2022\CSE 210\final project\obj\Debug\net6.0\refint\final project.dll
+C:\Users\erowl\BYU-Idaho\Spring 2022\CSE 210\final project\obj\Debug\net6.0\final project.pdb
+C:\Users\erowl\BYU-Idaho\Spring 2022\CSE 210\final project\obj\Debug\net6.0\final project.genruntimeconfig.cache
+C:\Users\erowl\BYU-Idaho\Spring 2022\CSE 210\final project\obj\Debug\net6.0\ref\final project.dll

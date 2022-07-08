@@ -1,0 +1,23 @@
+Mancala
+- 8 pockets on each side
+- 1 end pocket - score
+- each pocket starts with 4 marbles
+
+game play
+- players take turns
+- a player can empty any pocket on their own side by removing all marbles and placing one in each of the    pockets following
+- a player never places a marble in the opposite players pocket
+
+
+rules
+1. if the last marble ends in an empty pocket the marbles in the pocket across from it is emptied into that players end pocket
+2. if the last marble of the players turn ends in their end pocket they get another turn
+3. if a player empties all the marbles on their side the game is finished and they get the remaining marbles
+
+
+classes
+- pocket
+- end pocket : pocket
+- player pocket : pocket
+- director
+
