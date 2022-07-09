@@ -94,6 +94,7 @@ namespace Unit05.Game
                 marbles --; 
             }
             
+            if (i-1 == 0 || i-1 == 7)
             Console.WriteLine(i - 1);
 
             pockets[pocket].marble_count = 0;
