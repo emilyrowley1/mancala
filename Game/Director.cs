@@ -18,13 +18,16 @@ namespace Unit05.Game
             Player player2 = new Player(gameBoard, 2);
 
             gameBoard.displayBoard();
+            
+            bool playerNotWon = true;
+            while (playerNotWon)
+            {
+                player1.takeTurn();
+                gameBoard.displayBoard();
 
-            // int p = getInputs(1);
-            player1.takeTurn();
-            gameBoard.displayBoard();
-
-            player2.takeTurn();
-            gameBoard.displayBoard();
+                player2.takeTurn();
+                gameBoard.displayBoard();
+            }
         }
     }
 }

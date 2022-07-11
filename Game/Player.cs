@@ -27,6 +27,13 @@ namespace Unit05.Game
         public void takeTurn()
         {
             int move_num = getMove(player_num);
+
+            // If the pocket is empty the player needs to select another pocket
+            while (pockets[move_num].marble_count == 0)
+            {
+                move_num = getMove(player_num);
+            }
+
             makeMove(move_num);
         }
 
@@ -81,7 +88,8 @@ namespace Unit05.Game
         {
             int i;
             int marbles = pockets[pocket].marble_count;
-
+            
+            // places marbles in the following pockets
             for (i = pocket; marbles >= 0; i++)
             {
                 pockets[i].marble_count ++;
@@ -93,11 +101,88 @@ namespace Unit05.Game
                 
                 marbles --; 
             }
+
+            // Turing i into the index of pocket that the last marble landed in
+            if (i == 0)
+            {
+                i = 13;
+            }
+            else
+            {
+                i = i-1;
+            }
+
+            if (pockets[i].marble_count == 1)
+            {
+                landsInEmptyPocket(i, player_num);
+            }
             
             if (i-1 == 0 || i-1 == 7)
-            Console.WriteLine(i - 1);
 
             pockets[pocket].marble_count = 0;
+        }
+
+        private void landsInEmptyPocket(int pocketNum, int player_num)
+        {
+            int oppositePocket;
+            int endPocket;
+
+            switch (pocketNum)
+            {
+                case 1:
+                    oppositePocket = 13;
+                    break;
+                case 2:
+                    oppositePocket = 12;
+                    break;
+                case 3:
+                    oppositePocket = 11;
+                    break;
+                case 4:
+                    oppositePocket = 10;
+                    break;
+                case 5:
+                    oppositePocket = 9;
+                    break;
+                case 6:
+                    oppositePocket = 8;
+                    break;
+                case 13:
+                    oppositePocket = 1;
+                    break;
+                case 12:
+                    oppositePocket = 2;
+                    break;
+                case 11:
+                    oppositePocket = 3;
+                    break;
+                case 10:
+                    oppositePocket = 4;
+                    break;
+                case 9:
+                    oppositePocket = 5;
+                    break;
+                case 8:
+                    oppositePocket = 6;
+                    break;
+                default:
+                    oppositePocket = 0;
+                    break;
+            }
+
+            if (player_num == 1)
+            {
+                endPocket = 7;
+            }
+            else
+            {
+                endPocket = 0;
+            }
+
+            // getting the marble count of the opposite pocket and moving them to the end pocket
+            int marblesInPocket = pockets[oppositePocket].marble_count;
+            pockets[endPocket].marble_count += marblesInPocket;
+            pockets[oppositePocket].marble_count = 0;
         }
 
     }
