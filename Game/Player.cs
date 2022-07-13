@@ -7,6 +7,7 @@ namespace Unit05.Game
         Dictionary<int, Pocket> pockets;
         int player_num;
         int[] player_pockets = {1, 2, 3, 4, 5, 6};
+        int endPocket = 0;
         Board board;
 
         public Player(Board board, int player_num)
@@ -22,6 +23,7 @@ namespace Unit05.Game
                 player_pockets[3] = 11;
                 player_pockets[4] = 12;
                 player_pockets[5] = 13;
+                endPocket = 7;
 
             }
         }
@@ -98,7 +100,6 @@ namespace Unit05.Game
             for (i = pocket; marbles >= 0; i++)
             {
                 pockets[i].marble_count ++;
-                Console.WriteLine($"pocket {i} has {pockets[i].marble_count} marbles");
                 
                 if (i == 13) 
                 {
@@ -124,8 +125,13 @@ namespace Unit05.Game
             }
             
             pockets[pocket].marble_count = 0;
+
+            if (hasWon())
+            {
+                cleanBoard();
+            }
             
-            if (i == 0 || i == 7)
+            if (i == endPocket)
             {
                 takeTurn();
             }
@@ -194,8 +200,30 @@ namespace Unit05.Game
             pockets[oppositePocket].marble_count = 0;
         }
 
+        private bool hasWon()
+        {
+            foreach (var pocket in player_pockets)
+            {
+                if (pocket != 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
+        private void cleanBoard()
+        {
+            int remaining_marbles = 0; 
+            foreach (var pocket in pockets)
+            {
+                if (pocket.Key != 0 && pocket.Key != 7)
+                {
+                    remaining_marbles += pocket.Value.marble_count;
+                }
+            }
 
-        
+            endPocket += remaining_marbles;
+        }
     }
 }
