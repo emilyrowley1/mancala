@@ -7,7 +7,7 @@ namespace Unit05.Game
         Dictionary<int, Pocket> pockets;
         int player_num;
         int[] player_pockets = {1, 2, 3, 4, 5, 6};
-        int endPocket = 0;
+        int endPocket = 7;
         Board board;
 
         public Player(Board board, int player_num)
@@ -23,25 +23,43 @@ namespace Unit05.Game
                 player_pockets[3] = 11;
                 player_pockets[4] = 12;
                 player_pockets[5] = 13;
-                endPocket = 7;
+                endPocket = 0;
 
             }
         }
 
         public void takeTurn()
         {
+            int landedInPocket;
             board.displayBoard();
-        
+            
+            // Gets the players move
             int move_num = getMove(player_num);
-
             // If the pocket is empty the player needs to select another pocket
             while (pockets[move_num].marble_count == 0)
             {
                 move_num = getMove(player_num);
             }
 
-            makeMove(move_num);
-            
+            landedInPocket = makeMove(move_num);
+
+            if (hasWon(1))
+            {
+                cleanBoard();
+                Console.WriteLine($"Player {1} has won!");
+                Environment.Exit(0);
+            }
+            else if (hasWon(2))
+            {
+                cleanBoard();
+                Console.WriteLine($"Player {2} has won!");
+                Environment.Exit(0);
+            }
+            // If the last marble ends in the end pocket the player has another turn
+            else if (landedInPocket == endPocket)
+            {
+                takeTurn();
+            }
         }
 
         public int getMove(int player)
@@ -90,7 +108,7 @@ namespace Unit05.Game
             };
         }
 
-        public void makeMove(int pocket)
+        public int makeMove(int pocket)
         // Makes a move for the player
         {
             int i;
@@ -119,22 +137,16 @@ namespace Unit05.Game
                 i = i-1;
             }
 
+            // If the pocket the marble landed in is empty the marbles directly opposite that hole goes to the player
             if (pockets[i].marble_count == 1 && (i != 0 || i != 7))
             {
                 landsInEmptyPocket(i, player_num);
             }
             
+            // Emptying the chosen pocket
             pockets[pocket].marble_count = 0;
 
-            if (hasWon())
-            {
-                cleanBoard();
-            }
-            
-            if (i == endPocket)
-            {
-                takeTurn();
-            }
+            return i;
         }
 
         private void landsInEmptyPocket(int pocketNum, int player_num)
@@ -200,15 +212,29 @@ namespace Unit05.Game
             pockets[oppositePocket].marble_count = 0;
         }
 
-        private bool hasWon()
+        private bool hasWon(int num_player)
         {
-            foreach (var pocket in player_pockets)
+            if (num_player == 2)
             {
-                if (pocket != 0)
+                for (int num_pocket = 8; num_pocket < 14; num_pocket++)
                 {
-                    return false;
+                    if (pockets[num_pocket].marble_count != 0)
+                    {
+                        return false;
+                    } 
                 }
             }
+            else
+            {
+                for (int num_pocket = 1; num_pocket < 7; num_pocket++)
+                {
+                    if (pockets[num_pocket].marble_count != 0)
+                    {
+                        return false;
+                    } 
+                }
+            }
+
             return true;
         }
 
