@@ -7,9 +7,11 @@ namespace Unit05.Game
         Dictionary<int, Pocket> pockets;
         int player_num;
         int[] player_pockets = {1, 2, 3, 4, 5, 6};
+        Board board;
 
         public Player(Board board, int player_num)
         { 
+            this.board = board;
             pockets = board.pockets;
             this.player_num = player_num;
             if (player_num == 2)
@@ -26,6 +28,8 @@ namespace Unit05.Game
 
         public void takeTurn()
         {
+            board.displayBoard();
+        
             int move_num = getMove(player_num);
 
             // If the pocket is empty the player needs to select another pocket
@@ -35,6 +39,7 @@ namespace Unit05.Game
             }
 
             makeMove(move_num);
+            
         }
 
         public int getMove(int player)
@@ -93,6 +98,7 @@ namespace Unit05.Game
             for (i = pocket; marbles >= 0; i++)
             {
                 pockets[i].marble_count ++;
+                Console.WriteLine($"pocket {i} has {pockets[i].marble_count} marbles");
                 
                 if (i == 13) 
                 {
@@ -112,14 +118,17 @@ namespace Unit05.Game
                 i = i-1;
             }
 
-            if (pockets[i].marble_count == 1)
+            if (pockets[i].marble_count == 1 && (i != 0 || i != 7))
             {
                 landsInEmptyPocket(i, player_num);
             }
             
-            if (i-1 == 0 || i-1 == 7)
-
             pockets[pocket].marble_count = 0;
+            
+            if (i == 0 || i == 7)
+            {
+                takeTurn();
+            }
         }
 
         private void landsInEmptyPocket(int pocketNum, int player_num)
@@ -185,5 +194,8 @@ namespace Unit05.Game
             pockets[oppositePocket].marble_count = 0;
         }
 
+
+
+        
     }
 }
